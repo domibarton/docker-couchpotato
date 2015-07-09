@@ -1,4 +1,4 @@
 #!/bin/sh
-cd /sickbeard
+cd /couchpotato
 git pull
-./SickBeard.py --nolaunch --datadir=/datadir --config=/datadir/config.ini
+./CouchPotato.py --datadir=/datadir --config_file=/datadir/config.ini
