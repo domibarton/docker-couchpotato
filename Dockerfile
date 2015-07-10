@@ -24,4 +24,5 @@ EXPOSE 443
 
 USER couchpotato
 
+WORKDIR /couchpotato
 CMD /start.sh
