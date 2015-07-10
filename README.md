@@ -9,5 +9,5 @@ docker build -t <tag> .
 ## Run
 
 ```bash
-docker run --name couchpotato -v <datadir path>:/datadir -v <media path>:/media
+docker run --name couchpotato -v <datadir path>:/datadir -v <media path>:/media confirm/couchpotato
 ```
