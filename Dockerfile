@@ -20,7 +20,7 @@ RUN chown couchpotato: /start.sh \
 
 VOLUME ['/datadir', '/media']
 
-EXPOSE 443
+EXPOSE 8080
 
 USER couchpotato
 
