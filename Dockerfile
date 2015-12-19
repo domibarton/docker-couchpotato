@@ -9,7 +9,7 @@ RUN apt-get -q update \
     && rm -rf /tmp/*
 
 RUN groupadd -r -g 666 couchpotato \
-    && useradd -r -u 666 -g 666 couchpotato
+    && useradd -r -u 666 -g 666 -d /couchpotato couchpotato
 
 RUN git clone https://github.com/RuudBurger/CouchPotatoServer.git /couchpotato \
     && chown -R couchpotato: /couchpotato
@@ -25,4 +25,4 @@ EXPOSE 8080
 USER couchpotato
 
 WORKDIR /couchpotato
-CMD /start.sh
+CMD ["/start.sh"]
