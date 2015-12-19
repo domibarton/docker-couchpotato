@@ -1,5 +1,5 @@
 FROM debian:8
-MAINTAINER confirm IT solutions, dbarton
+MAINTAINER Dominique Barton
 
 RUN apt-get -q update \
     && apt-get install -qy git python-cheetah python-openssl \
