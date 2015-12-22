@@ -3,7 +3,7 @@
 echo "Updating CouchPotato git repository..."
 git pull
 
-if [[ -n "${VERSION}" ]]
+if [ -n "${VERSION}" ]
 then
     echo "Checking out SABnzbd version '${VERSION}'..."
     git checkout ${VERSION}
