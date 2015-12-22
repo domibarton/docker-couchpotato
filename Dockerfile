@@ -11,7 +11,7 @@ RUN apt-get -q update \
 RUN groupadd -r -g 666 couchpotato \
     && useradd -r -u 666 -g 666 -d /couchpotato couchpotato
 
-RUN git clone https://github.com/RuudBurger/CouchPotatoServer.git /couchpotato \
+RUN git clone -b master https://github.com/RuudBurger/CouchPotatoServer.git /couchpotato \
     && chown -R couchpotato: /couchpotato
 
 ADD start.sh /start.sh
