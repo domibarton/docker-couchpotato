@@ -2,7 +2,7 @@ FROM debian:8
 MAINTAINER Dominique Barton
 
 RUN apt-get -q update \
-    && apt-get install -qy git python-cheetah python-openssl \
+    && apt-get install -qy git python-cheetah python-openssl python-lxml \
     && apt-get -y autoremove \
     && apt-get -y clean \
     && rm -rf /var/lib/apt/lists/* \
