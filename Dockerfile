@@ -1,6 +1,10 @@
 FROM debian:8
 MAINTAINER Dominique Barton
 
+#
+# Install all required dependencies.
+#
+
 RUN apt-get -q update \
     && apt-get install -qy git python-pip python-dev libz-dev libxml2-dev libxslt1-dev gcc \
     && pip install cheetah lxml pyopenssl \
@@ -10,21 +14,38 @@ RUN apt-get -q update \
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf /tmp/*
 
+#
+# Create user and group for CouchPotato.
+#
+
 RUN groupadd -r -g 666 couchpotato \
     && useradd -r -u 666 -g 666 -d /couchpotato couchpotato
+
+#
+# Get CouchPotato repository.
+#
 
 RUN git clone -b master https://github.com/RuudBurger/CouchPotatoServer.git /couchpotato \
     && chown -R couchpotato: /couchpotato
 
-ADD start.sh /start.sh
-RUN chown couchpotato: /start.sh \
-    && chmod 755 /start.sh
+#
+# Add CouchPotato init script.
+#
 
-VOLUME ["/datadir", "/media"]
+ADD couchpotato.sh /couchpotato.sh
+RUN chmod 755 /couchpotato.sh
 
-EXPOSE 8080
+#
+# Define container settings.
+#
 
-USER couchpotato
+VOLUME ["/datadir", "/download"]
+
+EXPOSE 5000
+
+#
+# Start CouchPotato.
+#
 
 WORKDIR /couchpotato
-CMD ["/start.sh"]
+CMD ["/couchpotato.sh"]
