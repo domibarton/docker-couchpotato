@@ -2,50 +2,86 @@
 
 This is a Docker image for [CouchPotato](https://couchpota.to/) - the awesome movie PVR for usenet and torrents.
 
-## Configuration
+The Docker image currently supports:
 
-### Volumes
-
-Mount the following volumes inside your container:
-
-* `<datadir path>:/datadir`
-* `<media path>:/media`
-
-### Configuration file
-
-By default the CouchPotato configuration is located on:
-
-```
-/datadir/config.ini
-```
-
-If you want to change this, set the `CONFIG` environment variable.
-
-### CouchPotato Version
-
-By default the latest CouchPotato version will be used by pointing at the `master` tree of the [CouchPotato git repository](https://github.com/RuudBurger/CouchPotatoServer).
-If you want a different version you've set the `VERSION` environment variable to a valid git branch or tag.
-
-_Please note that CouchPotato will automatically be updated when you restart your container._
+* running CouchPotato under its __own user__ (not `root`)
+* changing of the __UID and GID__ for the CouchPotato user
+* __automatic update__ of CouchPotato on container restart
+* instant __switching between different CouchPotato versions__
+* support for OpenSSL / HTTPS encryption
 
 ## Run
 
-### Run via docker CLI
+### Run via Docker CLI client
+
+To run the CouchPotato container you can execute:
 
 ```bash
-docker run --name couchpotato -v <datadir path>:/datadir -v <media path>:/media dbarton/couchpotato
+docker run --name couchpotato -v <datadir path>:/datadir -v <media path>:/media -p 5050:5050 couchpotato/couchpotato
 ```
 
-### Run via docker-compose
+Open a browser and point it to [http://my-docker-host:5050](http://my-docker-host:5050)
+
+### Run via Docker Compose
+
+You can also run the CouchPotato container by using [Docker Compose](https://www.docker.com/docker-compose).
+
+If you've cloned the [git repository](https://github.com/domibarton/docker-couchpotato) you can build and run the Docker container locally (without the Docker Hub):
+
+```bash
+docker-compose up -d
+```
+
+If you want to use the Docker Hub image within your existing Docker Compose file you can use the following YAML snippet:
 
 ```yaml
-sabnzbd:
-    image: "dbarton/couchpotato"
+couchpotato:
+    image: "couchpotato/couchpotato"
     container_name: "couchpotato"
     volumes:
         - "<datadir path>:/datadir"
         - "<media path>:/media"
-    tty: true
-    stdin_open: true
+    ports:
+        - "5050:5050"
     restart: always
+```
+
+## Configuration
+
+### Volumes
+
+Please mount the following volumes inside your CouchPotato container:
+
+* `/datadir`: Holds all the CouchPotato data files (e.g. config, postProcessing)
+* `/media`: Directory for TV shows
+
+### Configuration file
+
+By default the CouchPotato configuration is located on `/datadir/config.ini`.
+If you want to change this you've to set the `CONFIG` environment variable, for example:
+
+```
+CONFIG=/datadir/couchpotato.ini
+```
+
+### CouchPotato Version
+
+By default the latest CouchPotato version will be used. This is achieved by pointing at the `master` tree of the [CouchPotato git repository](https://github.com/RuudBurger/CouchPotatoServer/tree/master). If you want a different version you've set the `VERSION` environment variable to a valid git [branch](https://github.com/RuudBurger/CouchPotatoServer/branches) or [tag](https://github.com/RuudBurger/CouchPotatoServer/tags), for example:
+
+```
+VERSION=devel
+```
+
+Please note that `VERSION=master` always points to the latest stable version, while `VERSION=devel` points to the bleeding-edge version of CouchPotato.
+
+_CouchPotato will automatically be updated and switched to your defined version when you restart your container._
+
+### UID and GID
+
+By default CouchPotato runs with user ID and group ID `666`.
+If you want to run CouchPotato with different ID's you've to set the `UID` and/or `GID` environment variables, for example:
+
+```
+UID=1234
+GID=1234
 ```

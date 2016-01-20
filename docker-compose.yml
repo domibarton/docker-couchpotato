@@ -1,0 +1,10 @@
+---
+couchpotato:
+    build: .
+    container_name: 'couchpotato'
+    environment:
+        VERSION: 'master'
+    volumes:
+        - './data/datadir:/datadir'
+        - './data/media:/media'
+    restart: 'always'
