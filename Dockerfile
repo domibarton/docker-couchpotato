@@ -41,7 +41,7 @@ RUN chmod 755 /couchpotato.sh
 
 VOLUME ["/datadir", "/download"]
 
-EXPOSE 5000
+EXPOSE 5050
 
 #
 # Start CouchPotato.
