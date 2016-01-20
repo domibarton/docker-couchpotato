@@ -79,9 +79,9 @@ _CouchPotato will automatically be updated and switched to your defined version 
 ### UID and GID
 
 By default CouchPotato runs with user ID and group ID `666`.
-If you want to run CouchPotato with different ID's you've to set the `UID` and/or `GID` environment variables, for example:
+If you want to run CouchPotato with different ID's you've to set the `CP_UID` and/or `CP_GID` environment variables, for example:
 
 ```
-UID=1234
-GID=1234
+CP_UID=1234
+CP_GID=1234
 ```
