@@ -49,7 +49,7 @@ printf "Getting current version... "
 CURRENT_VERSION=$(git rev-parse --abbrev-ref HEAD)
 echo "[${CURRENT_VERSION}]"
 
-if [[ "${CURRENT_VERSION}" == "${VERSION}" ]]
+if [[ "${CURRENT_VERSION}" != "${VERSION}" ]]
 then
     printf "Checking out CouchPotato version '${VERSION}'... "
     git checkout -q ${VERSION}
