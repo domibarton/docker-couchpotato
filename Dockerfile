@@ -24,7 +24,7 @@ RUN export VERSION=3.0.1 \
     && apt-get install -qy curl python-pip python-dev libz-dev libxml2-dev libxslt1-dev gcc \
     && curl -o /tmp/couchpotato.tar.gz https://codeload.github.com/CouchPotato/CouchPotatoServer/tar.gz/build/${VERSION} \
     && tar xzf /tmp/couchpotato.tar.gz \
-    && mv couchpotato-* couchpotato \
+    && mv CouchPotatoServer-* couchpotato \
     && chown -R couchpotato: couchpotato \
     && pip install cheetah lxml pyopenssl \
     && apt-get -y remove curl python-dev libz-dev libxml2-dev libxslt1-dev gcc \
