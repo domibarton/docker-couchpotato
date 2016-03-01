@@ -6,7 +6,6 @@ The Docker image currently supports:
 
 * running CouchPotato under its __own user__ (not `root`)
 * changing of the __UID and GID__ for the CouchPotato user
-* instant __switching between different CouchPotato versions__
 * support for OpenSSL / HTTPS encryption
 
 ## Run
