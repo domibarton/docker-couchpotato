@@ -6,7 +6,6 @@ The Docker image currently supports:
 
 * running CouchPotato under its __own user__ (not `root`)
 * changing of the __UID and GID__ for the CouchPotato user
-* __automatic update__ of CouchPotato on container restart
 * instant __switching between different CouchPotato versions__
 * support for OpenSSL / HTTPS encryption
 
@@ -63,18 +62,6 @@ If you want to change this you've to set the `CONFIG` environment variable, for 
 ```
 CONFIG=/datadir/couchpotato.ini
 ```
-
-### CouchPotato Version
-
-By default the latest CouchPotato version will be used. This is achieved by pointing at the `master` tree of the [CouchPotato git repository](https://github.com/RuudBurger/CouchPotatoServer/tree/master). If you want a different version you've set the `VERSION` environment variable to a valid git [branch](https://github.com/RuudBurger/CouchPotatoServer/branches) or [tag](https://github.com/RuudBurger/CouchPotatoServer/tags), for example:
-
-```
-VERSION=devel
-```
-
-Please note that `VERSION=master` always points to the latest stable version, while `VERSION=devel` points to the bleeding-edge version of CouchPotato.
-
-_CouchPotato will automatically be updated and switched to your defined version when you restart your container._
 
 ### UID and GID
 
