@@ -37,7 +37,7 @@ RUN export VERSION=3.0.1 \
 # Define container settings.
 #
 
-VOLUME ["/datadir", "/download"]
+VOLUME ["/datadir", "/media"]
 
 EXPOSE 5050
 
