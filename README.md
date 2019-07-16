@@ -51,7 +51,7 @@ couchpotato:
 Please mount the following volumes inside your CouchPotato container:
 
 * `/datadir`: Holds all the CouchPotato data files (e.g. config, postProcessing)
-* `/media`: Directory for TV shows
+* `/media`: Directory for movies
 
 ### Configuration file
 
